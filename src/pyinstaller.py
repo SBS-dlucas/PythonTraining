@@ -7,9 +7,11 @@ PyInstaller.__main__.run([
     '--hidden-import=eventlet.hubs.epolls',
     '--hidden-import=eventlet.hubs.kqueue',
     '--hidden-import=eventlet.hubs.selects',
+    '--hidden-import=eventlet.green',
     '--hidden-import=gevent',
     '--hidden-import=engineio.async_drivers.gevent',
     '--hidden-import=engineio.async_drivers.eventlet',
+    '--hidden-import=engineio.async_drivers.eventlet.wsgi',
     '--hidden-import=engineio.async_drivers.threading',
     '--hidden-import=dns.dns',
     '--hidden-import=dns.dnssec',
@@ -24,5 +26,6 @@ PyInstaller.__main__.run([
     '--hidden-import=dns.dnssec',
     '--hidden-import=dns.asyncquery',
     '--hidden-import=dns.asyncresolver',
-    '--hidden-import=dns.versioned'
+    '--hidden-import=dns.versioned',
+    '--hidden-import=http.server'
 ])

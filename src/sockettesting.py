@@ -1,8 +1,11 @@
 import socketio
 import eventlet
+from engineio.async_drivers import threading
+import eventlet.wsgi
+import socketserver
+import http.server
 
-
-sio = socketio.Server()
+sio = socketio.Server(async_mode='eventlet')
 app = socketio.WSGIApp(sio, static_files={
     '/': {'content_type': 'text/html', 'filename': 'index.html'}
 })
