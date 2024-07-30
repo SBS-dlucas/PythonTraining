@@ -28,7 +28,11 @@ def disconnect(sid):
     print('disconnect ', sid)
 
 def start_socket_server(port):
-    eventlet.wsgi.server(eventlet.listen(('127.0.0.1', port)), app)
+    try:
+        eventlet.wsgi.server(eventlet.listen(('127.0.0.1', port)), app)
+    except:
+        # something went wrong, maybe the socket is already open
+        print('something went wrong, maybe the socket is already open')
 
 
 if __name__ == '__main__':
