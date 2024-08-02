@@ -27,6 +27,7 @@ def send_command(sid, data):
 def disconnect(sid):
     print('disconnect ', sid)
 
+
 def start_socket_server(port):
     try:
         eventlet.wsgi.server(eventlet.listen(('127.0.0.1', port)), app)
@@ -38,11 +39,9 @@ def start_socket_server(port):
 if __name__ == '__main__':
     print('starting server 1 on 65432')
     eventlet.spawn(start_socket_server, 65432)
-   # t1 = threading.Thread(target=start_socket_server, args=[65432])
-   # t1.start()
 
     print('starting server 2 on 65433')
-    start_socket_server(65433)
-   # eventlet.spawn(start_socket_server, [65433])
-   # t2 = threading.Thread(target=start_socket_server, args=[65433])
-   # t2.start()
+    eventlet.spawn(start_socket_server(65433))
+
+    # If we need to spawn more servers, continue with spawning them on threads
+    # eventlet.spawn(start_socket_server, [65433])
