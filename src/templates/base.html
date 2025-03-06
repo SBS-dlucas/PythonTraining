@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+This is a template to inherit from for other html pages
+It uses the Jinja2 syntax for compatibility with Flask
+-->
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+        nav a {
+            color: #d64161;
+            font-size: 3em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!--
+            Renders any content needed to add functionality to this page
+        -->
+        {% block content %} {% endblock %}
+    </div>
+</body>
+</html>

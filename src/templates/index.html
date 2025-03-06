@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+<!--
+    Show a pretty plotly chart!
+-->
+{% block content %}
+    <h1>Flask-SocketIO with Plotly</h1>
+    <div id="graph">{{ graph_html|safe }}</div>
+    <button id="updateButton">Update Chart</button>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io();
+        socket.on('update_chart', function(data) {
+            var graphDiv = document.getElementById('graph');
+            var graphData = JSON.parse(data);
+            Plotly.react(graphDiv, graphData.data, graphData.layout);
+        });
+
+        document.getElementById('updateButton').addEventListener('click', function() {
+            var randomData = Array.from({ length: 3 }, () => Math.floor(Math.random() * 20) + 1);
+            var fig = {
+                data: [{
+                    x: ['A', 'B', 'C'],
+                    y: randomData,
+                    type: 'bar'
+                }],
+                layout: {}
+            };
+            var graph_json = JSON.stringify(fig);
+            socket.emit('update_chart_server', graph_json);
+        });
+    </script>
+{% endblock %}
