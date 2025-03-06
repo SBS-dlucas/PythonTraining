@@ -1,6 +1,7 @@
-import sys, io
+# this hack is because pyinstaller deletes stdout and stderr, but may not be needed
+'''import sys, io
 sys.stdout = io.StringIO()
-sys.stderr = io.StringIO()
+sys.stderr = io.StringIO()'''
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
@@ -10,14 +11,6 @@ import plotly.io as pio
 import webbrowser
 from threading import Timer
 from engineio.async_drivers import threading
-
-import os
-
-# cool hack because pyinstaller deletes stdout and stderr
-'''if sys.stdout is None:
-    sys.stdout = open(os.devnull, "w")
-if sys.stderr is None:
-    sys.stderr = open(os.devnull, "w")'''
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -77,8 +70,8 @@ if __name__ == '__main__':
         port=65432,
         width=800,
         height=600,
-        close_server_on_exit=False,
-        idle_interval=50
+        # close_server_on_exit=False,
+        # idle_interval=50
     ).run()
     
    # socketio.run(app, port=65432, debug=True, allow_unsafe_werkzeug=True)  # Start the server
