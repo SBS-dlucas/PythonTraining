@@ -3,6 +3,8 @@ import PyInstaller.__main__
 PyInstaller.__main__.run([
     'sockettesting.py',
     '--windowed',
+    '--add-data',
+    'templates:templates',
     '--hidden-import=eventlet.hubs.epolls',
     '--hidden-import=eventlet.hubs.kqueue',
     '--hidden-import=eventlet.hubs.selects',
